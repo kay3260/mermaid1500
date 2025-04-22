@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant 传感器
+    participant 摄像头
+    participant Control4
+    participant 业主
+    
+    传感器->>摄像头: 检测到窗户破碎
+    摄像头->>Control4: AI确认人员入侵
+    Control4->>业主: 推送实时画面+警报
+    alt 误报
+        业主->>Control4: 忽略警报
+    else 真实威胁
+        业主->>Control4: 呼叫安保
+        Control4->>Philips Hue: 开启红光闪烁
+        Control4->>Texecom: 启动高分贝警报
+    end
